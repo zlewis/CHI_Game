@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\GameBoard.cs" />
      <Compile Include="Assets\Scripts\GameSettings.cs" />
      <Compile Include="Assets\Scripts\MainMenuScript.cs" />
+     <Compile Include="Assets\Scripts\TurnScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
