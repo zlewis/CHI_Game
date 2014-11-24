@@ -6,6 +6,8 @@ public class GameSettings : MonoBehaviour
     GUIContent[] comboBoxList;
     private ComboBox comboBoxControl;// = new ComboBox();
     private GUIStyle listStyle = new GUIStyle();
+	public string count;
+	public int playercount;
 
     private void Start()
     {
@@ -24,19 +26,48 @@ public class GameSettings : MonoBehaviour
         listStyle.padding.top =
         listStyle.padding.bottom = 4;
 
-        comboBoxControl = new ComboBox(new Rect(Screen.width/2, Screen.height/2, 100, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
+        comboBoxControl = new ComboBox(new Rect(Screen.width/2 - 50, Screen.height/3, 100, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
     }
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(Screen.width / 2 - 50, 2 * Screen.height / 5, 300, 20), "Number of players: ");
+        GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height / 5, 300, 20), "Number of players: ");
         comboBoxControl.Show();
 
+		if (GUI.Button(new Rect(Screen.width / 2 - 75, 3*Screen.height / 5, 150, 50), "Save"))
+		{
+			count = comboBoxControl.buttonContent.text;
+		}
         if (GUI.Button(new Rect(Screen.width / 2 - 75, 3*Screen.height / 4, 150, 50), "Back"))
         {
             Application.LoadLevel(0);
         }
     }
+
+	public int PlayerCount()
+	{
+		if (count == "2") 
+		{
+			playercount = 2;
+		}
+		if (count == "3") 
+		{
+			playercount = 3;
+		}
+		if (count == "4") 
+		{
+			playercount = 4;
+		}
+		if (count == "5") 
+		{
+			playercount = 5;
+		}
+		if (count == "6") 
+		{
+			playercount = 6;
+		}
+		return playercount;
+	}
 }
 
 public class ComboBox
@@ -47,7 +78,7 @@ public class ComboBox
     private int selectedItemIndex = 0;
 
     private Rect rect;
-    private GUIContent buttonContent;
+    public GUIContent buttonContent;
     private GUIContent[] listContent;
     private string buttonStyle;
     private string boxStyle;
