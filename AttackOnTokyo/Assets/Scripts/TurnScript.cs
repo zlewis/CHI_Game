@@ -24,6 +24,7 @@ public class TurnScript : MonoBehaviour {
 	bool d4Lock=false;
 	bool d5Lock=false;
 	bool d6Lock=false;
+	ArrayList diceRolls = new ArrayList();
 
 	// Use this for initialization
 	void Start () {
@@ -48,36 +49,37 @@ public class TurnScript : MonoBehaviour {
 	void Update () {
 		
 		// Roll Dice
-		if(rollDice==true && rollNum<3)
-		{
-			if(d1Lock==false)
-			{
-				print (randNum ());
-			}
-			if(d2Lock==false)
-			{
-				print (randNum ());
-			}
-			if(d3Lock==false)
-			{
-				print (randNum ());
-			}
-			if(d4Lock==false)
-			{
-				print (randNum ());
-			}
-			if(d5Lock==false)
-			{
-				print (randNum ());
-			}
-			if(d6Lock==false)
-			{
-				print (randNum ());
-			}
-
-			rollDice=false;
-			rollNum++;
-		}
+//		if(rollDice==true && rollNum<3)
+//		{
+//			diceRolls.Clear();
+//			if(d1Lock==false)
+//			{
+//				diceRolls.Add(randNum());
+//			}
+//			if(d2Lock==false)
+//			{
+//				diceRolls.Add(randNum());
+//			}
+//			if(d3Lock==false)
+//			{
+//				diceRolls.Add(randNum());
+//			}
+//			if(d4Lock==false)
+//			{
+//				diceRolls.Add(randNum());
+//			}
+//			if(d5Lock==false)
+//			{
+//				diceRolls.Add(randNum());
+//			}
+//			if(d6Lock==false)
+//			{
+//				diceRolls.Add(randNum());
+//			}
+//
+//			rollDice=false;
+//			rollNum++;
+//		}
 
 		// Use Dice
 		// End Turn
@@ -96,6 +98,10 @@ public class TurnScript : MonoBehaviour {
 
 	public void setRollDice(bool b) {
 		rollDice = b;
+	}
+
+	public ArrayList getDiceRolls() {
+		return diceRolls;
 	}
 
 	void ChangeChar() {
