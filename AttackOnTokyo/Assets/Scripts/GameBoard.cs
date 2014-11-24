@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GameBoard : MonoBehaviour {
 
+	public TurnScript scriptReference;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -19,5 +21,9 @@ public class GameBoard : MonoBehaviour {
         {
             Application.LoadLevel(0);
         }
+		if (GUI.Button(new Rect(0,Screen.height-150,150,150), "Roll"))
+		{
+			scriptReference.setRollDice(true);
+		}
     }
 }

@@ -3,26 +3,36 @@ using System.Collections;
 
 public class TurnScript : MonoBehaviour {
 
-	GameObject monster1 = GameObject.Find ("monster1");
-	GameObject monster2 = GameObject.Find ("monster2");
-	GameObject monster3 = GameObject.Find ("monster3");
-	GameObject monster4 = GameObject.Find ("monster4");
-	GameObject monster5 = GameObject.Find ("monster5");
-	GameObject monster6 = GameObject.Find ("monster6");
+	GameObject monster1;
+	GameObject monster2;
+	GameObject monster3;
+	GameObject monster4;
+	GameObject monster5;
+	GameObject monster6;
 
 	// TODO Get number of players
-	int numPlayers;
-
-	// Create a list of the active players
-	ArrayList CharList;
-
+	int numPlayers=6;
+	ArrayList CharList = new ArrayList();
 	GameObject activeChar;
 	int activeInt=0;
-
 	bool endTurn=false;
+	public bool rollDice=false;
+	int rollNum=0;
+	bool d1Lock=false;
+	bool d2Lock=false;
+	bool d3Lock=false;
+	bool d4Lock=false;
+	bool d5Lock=false;
+	bool d6Lock=false;
 
 	// Use this for initialization
 	void Start () {
+
+		monster1 = GameObject.Find ("monster1");
+		monster2 = GameObject.Find ("monster2");
+		monster3 = GameObject.Find ("monster3");
+		monster4 = GameObject.Find ("monster4");
+		monster5 = GameObject.Find ("monster5");
 
 		CharList.Add (monster1);
 		CharList.Add (monster2);
@@ -38,6 +48,37 @@ public class TurnScript : MonoBehaviour {
 	void Update () {
 		
 		// Roll Dice
+		if(rollDice==true && rollNum<3)
+		{
+			if(d1Lock==false)
+			{
+				print (randNum ());
+			}
+			if(d2Lock==false)
+			{
+				print (randNum ());
+			}
+			if(d3Lock==false)
+			{
+				print (randNum ());
+			}
+			if(d4Lock==false)
+			{
+				print (randNum ());
+			}
+			if(d5Lock==false)
+			{
+				print (randNum ());
+			}
+			if(d6Lock==false)
+			{
+				print (randNum ());
+			}
+
+			rollDice=false;
+			rollNum++;
+		}
+
 		// Use Dice
 		// End Turn
 
@@ -45,6 +86,16 @@ public class TurnScript : MonoBehaviour {
 		{
 			ChangeChar();
 		}
+	}
+
+	int randNum() {
+		int dice;
+		dice = (int)Random.Range (1, 7);
+		return dice;
+	}
+
+	public void setRollDice(bool b) {
+		rollDice = b;
 	}
 
 	void ChangeChar() {
