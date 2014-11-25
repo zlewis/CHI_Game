@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Rules1.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Rules2.cs">
     <Files>
+      <File FileName="Assets\Scripts\Rules2.cs" Line="28" Column="12" />
       <File FileName="Assets\Scripts\GameSettings.cs" Line="33" Column="6" />
       <File FileName="Assets\Scripts\MainMenuScript.cs" Line="36" Column="29" />
-      <File FileName="Assets\Scripts\Rules1.cs" Line="19" Column="14" />
+      <File FileName="Assets\Scripts\Rules1.cs" Line="25" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

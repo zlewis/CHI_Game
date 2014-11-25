@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\TurnScript.cs" />
      <Compile Include="Assets\Scripts\Rules1.cs" />
      <Compile Include="Assets\Scripts\Rules2.cs" />
+     <Compile Include="Assets\Scripts\Rules3.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

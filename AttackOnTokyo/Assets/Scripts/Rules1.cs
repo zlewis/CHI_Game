@@ -27,7 +27,7 @@ public class Rules1 : MonoBehaviour {
 		GUI.TextField (new Rect (Screen.width / 2 - 200, Screen.height / 3, 400, 100), "The goal of the game is to become King of Tokyo. \nThe game is over when a Monster earns 20 Victor Points \nor if it is the last Monster standing.", textStyle);
 
 		if (GUI.Button (new Rect (Screen.width / 2 - 75, 3 * Screen.height / 5, 150, 50), "Next")) {
-			print ('1');
+			Application.LoadLevel(4);
 		}
 		if (GUI.Button (new Rect (Screen.width / 2 - 75, 7 * Screen.height / 10, 150, 50), "Main Menu")) {
 			Application.LoadLevel(0);
