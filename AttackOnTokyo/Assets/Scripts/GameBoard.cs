@@ -20,6 +20,23 @@ public class GameBoard : MonoBehaviour {
 	Texture2D box6;
 
 	ArrayList diceRolls = new ArrayList();
+	ArrayList diceChosen = new ArrayList();
+
+	public GUISkin Button_Skin;
+
+	public bool toggle1=false;
+	public bool toggle2=false;
+	public bool toggle3=false;
+	public bool toggle4=false;
+	public bool toggle5=false;
+	public bool toggle6=false;
+
+	int store1;
+	int store2;
+	int store3;
+	int store4;
+	int store5;
+	int store6;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +46,13 @@ public class GameBoard : MonoBehaviour {
 		die4 = (Texture2D)Resources.Load("dice/die4");
 		die5 = (Texture2D)Resources.Load("dice/die5");
 		die6 = (Texture2D)Resources.Load("dice/die6");
+
+		diceChosen.Add (0);
+		diceChosen.Add (0);
+		diceChosen.Add (0);
+		diceChosen.Add (0);
+		diceChosen.Add (0);
+		diceChosen.Add (0);
 	}
 	
 	// Update is called once per frame
@@ -38,10 +62,15 @@ public class GameBoard : MonoBehaviour {
 
     private void OnGUI()
     {
+		GUI.skin = Button_Skin;
+
+		// Main Menu Button
         if (GUI.Button(new Rect(0, 0, 150, 50), "Main Menu"))
         {
             Application.LoadLevel(0);
         }
+
+		// Roll Button
 		if (GUI.Button(new Rect(0,Screen.height-50,50,50), "Roll"))
 		{
 			diceRolls.Add(randNum());
@@ -56,14 +85,21 @@ public class GameBoard : MonoBehaviour {
 			//diceRolls = scriptReference.getDiceRolls ();
 
 			setBoxes ();
-			diceRolls.Clear();
 		}
-		GUI.Box (new Rect (50, Screen.height - 50, 50, 50), box1);
-		GUI.Box (new Rect (100, Screen.height - 50, 50, 50), box2);
-		GUI.Box (new Rect (150, Screen.height - 50, 50, 50), box3);
-		GUI.Box (new Rect (200, Screen.height - 50, 50, 50), box4);
-		GUI.Box (new Rect (250, Screen.height - 50, 50, 50), box5);
-		GUI.Box (new Rect (300, Screen.height - 50, 50, 50), box6);
+
+		// Dice Buttons
+		toggle1 = GUI.Toggle (new Rect (50, Screen.height - 50, 50, 50), toggle1, box1);
+		toggle2 = GUI.Toggle (new Rect (100, Screen.height - 50, 50, 50), toggle2, box2);
+		toggle3 = GUI.Toggle (new Rect (150, Screen.height - 50, 50, 50), toggle3, box3);
+		toggle4 = GUI.Toggle (new Rect (200, Screen.height - 50, 50, 50), toggle4, box4);
+		toggle5 = GUI.Toggle (new Rect (250, Screen.height - 50, 50, 50), toggle5, box5);
+		toggle6 = GUI.Toggle (new Rect (300, Screen.height - 50, 50, 50), toggle6, box6);
+
+		setChosen ();
+
+		diceRolls.Clear();
+
+		//print (diceChosen [0]);
     }
 
 	int randNum() {
@@ -72,62 +108,120 @@ public class GameBoard : MonoBehaviour {
 		return dice;
 	}
 
+	void setChosen(){
+		if(toggle1 && (int)diceChosen[0]==0)
+		{
+			diceChosen[0]=store1;
+		}
+		else if(toggle1==false)
+		{
+			diceChosen[0]=0;
+		}
+		if(toggle2 && (int)diceChosen[1]==0)
+		{
+			diceChosen[1]=store2;
+		}
+		else if(toggle2==false)
+		{
+			diceChosen[1]=0;
+		}
+		if(toggle3 && (int)diceChosen[2]==0)
+		{
+			diceChosen[2]=store3;
+		}
+		else if(toggle3==false)
+		{
+			diceChosen[2]=0;
+		}
+		if(toggle4 && (int)diceChosen[3]==0)
+		{
+			diceChosen[3]=store4;
+		}
+		else if(toggle4==false)
+		{
+			diceChosen[3]=0;
+		}
+		if(toggle5 && (int)diceChosen[4]==0)
+		{
+			diceChosen[4]=store5;
+		}
+		else if(toggle5==false)
+		{
+			diceChosen[4]=0;
+		}
+		if(toggle6 && (int)diceChosen[5]==0)
+		{
+			diceChosen[5]=store6;
+		}
+		else if(toggle6==false)
+		{
+			diceChosen[5]=0;
+		}
+	}
+
 	void setBoxes(){
+		if(toggle1==false){store1 = (int)diceRolls [0];}
+		if(toggle2==false){store2 = (int)diceRolls [1];}
+		if(toggle3==false){store3 = (int)diceRolls [2];}
+		if(toggle4==false){store4 = (int)diceRolls [3];}
+		if(toggle5==false){store5 = (int)diceRolls [4];}
+		if(toggle6==false){store6 = (int)diceRolls [5];}
+
 		for(int i=0;i<6;i++)
 		{
 			if((int)diceRolls[i]==1)
 			{
-				if(i==0){box1=die1;}
-				if(i==1){box2=die1;}
-				if(i==2){box3=die1;}
-				if(i==3){box4=die1;}
-				if(i==4){box5=die1;}
-				if(i==5){box6=die1;}
+				if(i==0 && toggle1==false){box1=die1;}
+				if(i==1 && toggle2==false){box2=die1;}
+				if(i==2 && toggle3==false){box3=die1;}
+				if(i==3 && toggle4==false){box4=die1;}
+				if(i==4 && toggle5==false){box5=die1;}
+				if(i==5 && toggle6==false){box6=die1;}
 			}
 			if((int)diceRolls[i]==2)
 			{
-				if(i==0){box1=die2;}
-				if(i==1){box2=die2;}
-				if(i==2){box3=die2;}
-				if(i==3){box4=die2;}
-				if(i==4){box5=die2;}
-				if(i==5){box6=die2;}
+				if(i==0 && toggle1==false){box1=die2;}
+				if(i==1 && toggle2==false){box2=die2;}
+				if(i==2 && toggle3==false){box3=die2;}
+				if(i==3 && toggle4==false){box4=die2;}
+				if(i==4 && toggle5==false){box5=die2;}
+				if(i==5 && toggle6==false){box6=die2;}
 			}
 			if((int)diceRolls[i]==3)
 			{
-				if(i==0){box1=die3;}
-				if(i==1){box2=die3;}
-				if(i==2){box3=die3;}
-				if(i==3){box4=die3;}
-				if(i==4){box5=die3;}
-				if(i==5){box6=die3;}
+				if(i==0 && toggle1==false){box1=die3;}
+				if(i==1 && toggle2==false){box2=die3;}
+				if(i==2 && toggle3==false){box3=die3;}
+				if(i==3 && toggle4==false){box4=die3;}
+				if(i==4 && toggle5==false){box5=die3;}
+				if(i==5 && toggle6==false){box6=die3;}
 			}
 			if((int)diceRolls[i]==4)
 			{
-				if(i==0){box1=die4;}
-				if(i==1){box2=die4;}
-				if(i==2){box3=die4;}
-				if(i==3){box4=die4;}
-				if(i==4){box5=die4;}
-				if(i==5){box6=die4;}
+				if(i==0 && toggle1==false){box1=die4;}
+				if(i==1 && toggle2==false){box2=die4;}
+				if(i==2 && toggle3==false){box3=die4;}
+				if(i==3 && toggle4==false){box4=die4;}
+				if(i==4 && toggle5==false){box5=die4;}
+				if(i==5 && toggle6==false){box6=die4;}
 			}
 			if((int)diceRolls[i]==5)
 			{
-				if(i==0){box1=die5;}
-				if(i==1){box2=die5;}
-				if(i==2){box3=die5;}
-				if(i==3){box4=die5;}
-				if(i==4){box5=die5;}
-				if(i==5){box6=die5;}
+				if(i==0 && toggle1==false){box1=die5;}
+				if(i==1 && toggle2==false){box2=die5;}
+				if(i==2 && toggle3==false){box3=die5;}
+				if(i==3 && toggle4==false){box4=die5;}
+				if(i==4 && toggle5==false){box5=die5;}
+				if(i==5 && toggle6==false){box6=die5;}
 			}
 			if((int)diceRolls[i]==6)
 			{
-				if(i==0){box1=die6;}
-				if(i==1){box2=die6;}
-				if(i==2){box3=die6;}
-				if(i==3){box4=die6;}
-				if(i==4){box5=die6;}
-				if(i==5){box6=die6;}
+				if(i==0 && toggle1==false){box1=die6;}
+				if(i==1 && toggle2==false){box2=die6;}
+				if(i==2 && toggle3==false){box3=die6;}
+				if(i==3 && toggle4==false){box4=die6;}
+				if(i==4 && toggle5==false){box5=die6;}
+				if(i==5 && toggle6==false){box6=die6;}
 			}
 		}
 	}
