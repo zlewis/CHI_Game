@@ -49,6 +49,9 @@
      <Compile Include="Assets\Scripts\GameBoard.cs" />
      <Compile Include="Assets\Scripts\GameSettings.cs" />
      <Compile Include="Assets\Scripts\MainMenuScript.cs" />
+     <Compile Include="Assets\Scripts\Rules1.cs" />
+     <Compile Include="Assets\Scripts\Rules2.cs" />
+     <Compile Include="Assets\Scripts\Rules3.cs" />
      <Compile Include="Assets\Scripts\TurnScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

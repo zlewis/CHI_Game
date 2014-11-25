@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MainMenuScript : MonoBehaviour {
 
+	//public GameSettings scriptReference;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -31,7 +33,7 @@ public class MainMenuScript : MonoBehaviour {
         }
         if (GUI.Button(new Rect(Screen.width/2-75, 3*Screen.height/5, 150, 50), "How to play?"))
         {
-            print("3");
+			Application.LoadLevel(3);
         }
         if (GUI.Button(new Rect(Screen.width / 2 - 75, 7 * Screen.height / 10, 150, 50), "Quit"))
         {
