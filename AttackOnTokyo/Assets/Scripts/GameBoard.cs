@@ -89,27 +89,11 @@ public class GameBoard : MonoBehaviour {
     {
 		GUI.skin = Button_Skin;
 
-//		if(endTurn==false)
-//		{
-//			showDice=true;
-//		}
-
 		// Main Menu Button
         if (GUI.Button(new Rect(0, 0, 150, 50), "Main Menu"))
         {
             Application.LoadLevel(0);
         }
-
-		// End Turn Button
-//		if(GUI.Button(new Rect(0,200,100,100), "End Turn"))
-//		{
-//			endTurn=true;
-//		}
-
-//		if(endTurn)
-//		{
-//			scriptReference.endTurn=true;
-//		}
 
 		// Roll Button
 		if (GUI.Button(new Rect(0,Screen.height-50,50,50), "Roll"))
@@ -117,6 +101,11 @@ public class GameBoard : MonoBehaviour {
 			if(rollCount<3)
 			{
 				showDice=true;
+
+				if(rollCount==0)
+				{
+					resetToggle();
+				}
 
 				diceRolls.Add(randNum());
 				diceRolls.Add(randNum());
@@ -162,6 +151,15 @@ public class GameBoard : MonoBehaviour {
 
 	// Helper Functions ---------------------------------------------------------------------
 
+
+	public void resetToggle() {
+		toggle1 = false;
+		toggle2 = false;
+		toggle3 = false;
+		toggle4 = false;
+		toggle5 = false;
+		toggle6 = false;
+	}
 
 	int randNum() {
 		int dice;

@@ -18,8 +18,7 @@ public class TurnScript : MonoBehaviour {
 	string monster4;
 	string monster5;
 	string monster6;
-
-	// TODO Get number of players
+	
 	int numPlayers=6;
 	ArrayList CharList = new ArrayList();
 	string activeChar;
@@ -73,10 +72,9 @@ public class TurnScript : MonoBehaviour {
 			scriptReference7.health += healthEarned;
 			if(scriptReference7.health>10)
 			{
-				//scriptReference7.health=10;
+				scriptReference7.health=10;
 			}
 
-			//diceRolledSet=false;
 			endTurn=true;
 		}
 
@@ -87,11 +85,10 @@ public class TurnScript : MonoBehaviour {
 
 		if(endTurn)
 		{
-			scriptReference.showDice=false;
+			scriptReference.resetToggle();
 			diceRolledSet=false;
 			ChangeChar();
 			endTurn=false;
-			//scriptReference.endTurn=false;
 		}
 	}
 
