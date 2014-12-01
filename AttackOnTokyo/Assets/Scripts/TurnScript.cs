@@ -18,6 +18,10 @@ public class TurnScript : MonoBehaviour {
 	bool endTurn=false;
 	ArrayList diceRolled = new ArrayList();
 	bool diceRolledSet=false;
+	int vPointsEarned=0;
+	int energyEarned=0;
+	int attackEarned=0;
+	int healthEarned=0;
 
 	// Use this for initialization
 	void Start () {
@@ -45,11 +49,25 @@ public class TurnScript : MonoBehaviour {
 		// Roll Dice
 			// In GameBoard.cs
 		// Use Dice
-			
+		if(diceRolledSet)
+		{
+			vPointsEarned = checkNum(1);
+			vPointsEarned += checkNum(2);
+			vPointsEarned += checkNum(3);
+			energyEarned = checkSym(4);
+			attackEarned = checkSym(5);
+			healthEarned = checkSym(6);
+		}
+		// Use these numbers to affect the monsters
+		// Have to make a variable to see who is in the city
+		// Check for death and victory
+
 		// End Turn
 
 		if(endTurn)
 		{
+			// Reset the dice some how
+			diceRolledSet=false;
 			ChangeChar();
 		}
 	}
@@ -61,6 +79,52 @@ public class TurnScript : MonoBehaviour {
 
 	// Hepler Functions ------------------------------------------------------------
 
+	
+	int checkNum(int a) {
+		int numCount = 0;
+		int pointsEarned = 0;
+
+		for(int i=0;i<6;i++)
+		{
+			if((int)diceRolled[i]==a)
+			{
+				numCount++;
+			}
+		}
+
+		if(numCount>=3)
+		{
+			pointsEarned=a;
+			if(numCount==4)
+			{
+				pointsEarned+=1;
+			}
+			if(numCount==5)
+			{
+				pointsEarned+=2;
+			}
+			if(numCount==6)
+			{
+				pointsEarned+=3;
+			}
+		}
+
+		return pointsEarned;
+	}
+
+	int checkSym(int a) {
+		int symCount = 0;
+
+		for(int i=0;i<6;i++)
+		{
+			if((int)diceRolled[i]==a)
+			{
+				symCount++;
+			}
+		}
+
+		return symCount;
+	}
 
 	int randNum() {
 		int dice;
