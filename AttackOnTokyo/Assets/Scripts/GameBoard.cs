@@ -19,6 +19,8 @@ public class GameBoard : MonoBehaviour {
 	Texture2D box5;
 	Texture2D box6;
 
+	Texture2D bar;
+
 	int rollCount=0;
 
 	bool endRolling=false;
@@ -36,6 +38,8 @@ public class GameBoard : MonoBehaviour {
 	public bool toggle5=false;
 	public bool toggle6=false;
 
+	public bool showDice=false;
+
 	int store1;
 	int store2;
 	int store3;
@@ -51,6 +55,8 @@ public class GameBoard : MonoBehaviour {
 		die4 = (Texture2D)Resources.Load("dice/die4");
 		die5 = (Texture2D)Resources.Load("dice/die5");
 		die6 = (Texture2D)Resources.Load("dice/die6");
+
+		bar = (Texture2D)Resources.Load("dice/Bar2");
 
 		diceChosen.Add (0);
 		diceChosen.Add (0);
@@ -92,6 +98,8 @@ public class GameBoard : MonoBehaviour {
 		{
 			if(rollCount<3)
 			{
+				showDice=true;
+
 				diceRolls.Add(randNum());
 				diceRolls.Add(randNum());
 				diceRolls.Add(randNum());
@@ -108,13 +116,19 @@ public class GameBoard : MonoBehaviour {
 		// Rolls left label
 		GUI.Label (new Rect (50, Screen.height - 70, 100, 50), 3 - rollCount + " Rolls Left");
 
+		// Background for Dice
+		GUI.Box (new Rect (50, Screen.height - 50, 350, 100), bar,"button1");
+
 		// Dice Buttons
-		toggle1 = GUI.Toggle (new Rect (50, Screen.height - 50, 50, 50), toggle1, box1);
-		toggle2 = GUI.Toggle (new Rect (100, Screen.height - 50, 50, 50), toggle2, box2);
-		toggle3 = GUI.Toggle (new Rect (150, Screen.height - 50, 50, 50), toggle3, box3);
-		toggle4 = GUI.Toggle (new Rect (200, Screen.height - 50, 50, 50), toggle4, box4);
-		toggle5 = GUI.Toggle (new Rect (250, Screen.height - 50, 50, 50), toggle5, box5);
-		toggle6 = GUI.Toggle (new Rect (300, Screen.height - 50, 50, 50), toggle6, box6);
+		if(showDice==true)
+		{
+			toggle1 = GUI.Toggle (new Rect (50, Screen.height - 50, 50, 50), toggle1, box1);
+			toggle2 = GUI.Toggle (new Rect (100, Screen.height - 50, 50, 50), toggle2, box2);
+			toggle3 = GUI.Toggle (new Rect (150, Screen.height - 50, 50, 50), toggle3, box3);
+			toggle4 = GUI.Toggle (new Rect (200, Screen.height - 50, 50, 50), toggle4, box4);
+			toggle5 = GUI.Toggle (new Rect (250, Screen.height - 50, 50, 50), toggle5, box5);
+			toggle6 = GUI.Toggle (new Rect (300, Screen.height - 50, 50, 50), toggle6, box6);
+		}
 
 		setChosen ();
 
@@ -179,7 +193,7 @@ public class GameBoard : MonoBehaviour {
 		}
 		if ((int)diceChosen[5] == 0) 
 		{
-			diceEnd[6]=store6;
+			diceEnd[5]=store6;
 		}
 		else
 		{

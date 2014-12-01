@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TurnScript : MonoBehaviour {
 
+	public GameBoard scriptReference;
+
 	GameObject monster1;
 	GameObject monster2;
 	GameObject monster3;
@@ -66,7 +68,7 @@ public class TurnScript : MonoBehaviour {
 
 		if(endTurn)
 		{
-			// Reset the dice some how
+			scriptReference.showDice=false;
 			diceRolledSet=false;
 			ChangeChar();
 		}
