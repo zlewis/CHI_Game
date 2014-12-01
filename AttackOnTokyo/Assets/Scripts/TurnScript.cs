@@ -16,24 +16,18 @@ public class TurnScript : MonoBehaviour {
 	GameObject activeChar;
 	int activeInt=0;
 	bool endTurn=false;
-	public bool rollDice=false;
-	int rollNum=0;
-	bool d1Lock=false;
-	bool d2Lock=false;
-	bool d3Lock=false;
-	bool d4Lock=false;
-	bool d5Lock=false;
-	bool d6Lock=false;
-	ArrayList diceRolls = new ArrayList();
+	ArrayList diceRolled = new ArrayList();
+	bool diceRolledSet=false;
 
 	// Use this for initialization
 	void Start () {
 
-		monster1 = GameObject.Find ("monster1");
-		monster2 = GameObject.Find ("monster2");
-		monster3 = GameObject.Find ("monster3");
-		monster4 = GameObject.Find ("monster4");
-		monster5 = GameObject.Find ("monster5");
+		monster1 = GameObject.Find ("CyberBunny");
+		monster2 = GameObject.Find ("Kraken");
+		monster3 = GameObject.Find ("TheKing");
+		monster4 = GameObject.Find ("GigaZaur");
+		monster5 = GameObject.Find ("Alienoid");
+		monster6 = GameObject.Find ("MekaDragon");
 
 		CharList.Add (monster1);
 		CharList.Add (monster2);
@@ -49,39 +43,9 @@ public class TurnScript : MonoBehaviour {
 	void Update () {
 		
 		// Roll Dice
-//		if(rollDice==true && rollNum<3)
-//		{
-//			diceRolls.Clear();
-//			if(d1Lock==false)
-//			{
-//				diceRolls.Add(randNum());
-//			}
-//			if(d2Lock==false)
-//			{
-//				diceRolls.Add(randNum());
-//			}
-//			if(d3Lock==false)
-//			{
-//				diceRolls.Add(randNum());
-//			}
-//			if(d4Lock==false)
-//			{
-//				diceRolls.Add(randNum());
-//			}
-//			if(d5Lock==false)
-//			{
-//				diceRolls.Add(randNum());
-//			}
-//			if(d6Lock==false)
-//			{
-//				diceRolls.Add(randNum());
-//			}
-//
-//			rollDice=false;
-//			rollNum++;
-//		}
-
+			// In GameBoard.cs
 		// Use Dice
+			
 		// End Turn
 
 		if(endTurn)
@@ -90,18 +54,24 @@ public class TurnScript : MonoBehaviour {
 		}
 	}
 
+	void OnGUI() {
+
+	}
+
+
+	// Hepler Functions ------------------------------------------------------------
+
+
 	int randNum() {
 		int dice;
 		dice = (int)Random.Range (1, 7);
 		return dice;
 	}
 
-	public void setRollDice(bool b) {
-		rollDice = b;
-	}
-
-	public ArrayList getDiceRolls() {
-		return diceRolls;
+	public void setDiceRolled(ArrayList b) {
+		diceRolled = b;
+		diceRolledSet = true;
+		//print(diceRolled[0]+","+diceRolled[1]+","+diceRolled[2]+","+diceRolled[3]+","+diceRolled[4]+","+diceRolled[5]);
 	}
 
 	void ChangeChar() {

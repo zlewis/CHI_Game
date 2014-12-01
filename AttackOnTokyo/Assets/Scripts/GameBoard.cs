@@ -19,8 +19,13 @@ public class GameBoard : MonoBehaviour {
 	Texture2D box5;
 	Texture2D box6;
 
+	int rollCount=0;
+
+	bool endRolling=false;
+
 	ArrayList diceRolls = new ArrayList();
 	ArrayList diceChosen = new ArrayList();
+	ArrayList diceEnd = new ArrayList();
 
 	public GUISkin Button_Skin;
 
@@ -53,11 +58,23 @@ public class GameBoard : MonoBehaviour {
 		diceChosen.Add (0);
 		diceChosen.Add (0);
 		diceChosen.Add (0);
+
+		diceEnd.Add (0);
+		diceEnd.Add (0);
+		diceEnd.Add (0);
+		diceEnd.Add (0);
+		diceEnd.Add (0);
+		diceEnd.Add (0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(endRolling)
+		{
+			setDiceEnd();
+			scriptReference.setDiceRolled(diceEnd);
+			endRolling=false;
+		}
 	}
 
     private void OnGUI()
@@ -73,19 +90,23 @@ public class GameBoard : MonoBehaviour {
 		// Roll Button
 		if (GUI.Button(new Rect(0,Screen.height-50,50,50), "Roll"))
 		{
-			diceRolls.Add(randNum());
-			diceRolls.Add(randNum());
-			diceRolls.Add(randNum());
-			diceRolls.Add(randNum());
-			diceRolls.Add(randNum());
-			diceRolls.Add(randNum());
+			if(rollCount<3)
+			{
+				diceRolls.Add(randNum());
+				diceRolls.Add(randNum());
+				diceRolls.Add(randNum());
+				diceRolls.Add(randNum());
+				diceRolls.Add(randNum());
+				diceRolls.Add(randNum());
 
-			//scriptReference.Update ();
+				rollCount++;
 
-			//diceRolls = scriptReference.getDiceRolls ();
-
-			setBoxes ();
+				setBoxes ();
+			}
 		}
+
+		// Rolls left label
+		GUI.Label (new Rect (50, Screen.height - 70, 100, 50), 3 - rollCount + " Rolls Left");
 
 		// Dice Buttons
 		toggle1 = GUI.Toggle (new Rect (50, Screen.height - 50, 50, 50), toggle1, box1);
@@ -97,15 +118,73 @@ public class GameBoard : MonoBehaviour {
 
 		setChosen ();
 
-		diceRolls.Clear();
+		if(rollCount>=3)
+		{
+			endRolling=true;
+		}
 
-		//print (diceChosen [0]);
+		diceRolls.Clear();
     }
+
+
+	// Helper Functions ---------------------------------------------------------------------
+
 
 	int randNum() {
 		int dice;
 		dice = (int)Random.Range (1, 7);
 		return dice;
+	}
+
+	void setDiceEnd(){
+		if ((int)diceChosen[0] == 0) 
+		{
+			diceEnd[0]=store1;
+		}
+		else
+		{
+			diceEnd[0]=diceChosen[0];
+		}
+		if ((int)diceChosen[1] == 0) 
+		{
+			diceEnd[1]=store2;
+		}
+		else
+		{
+			diceEnd[1]=diceChosen[1];
+		}
+		if ((int)diceChosen[2] == 0)
+		{
+			diceEnd[2]=store3;
+		}
+		else
+		{
+			diceEnd[2]=diceChosen[2];
+		}
+		if ((int)diceChosen[3] == 0) 
+		{
+			diceEnd[3]=store4;
+		}
+		else
+		{
+			diceEnd[3]=diceChosen[3];
+		}
+		if ((int)diceChosen[4] == 0) 
+		{
+			diceEnd[4]=store5;
+		}
+		else
+		{
+			diceEnd[4]=diceChosen[4];
+		}
+		if ((int)diceChosen[5] == 0) 
+		{
+			diceEnd[6]=store6;
+		}
+		else
+		{
+			diceEnd[5]=diceChosen[5];
+		}
 	}
 
 	void setChosen(){
