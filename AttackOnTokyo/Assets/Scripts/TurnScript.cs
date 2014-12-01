@@ -4,20 +4,27 @@ using System.Collections;
 public class TurnScript : MonoBehaviour {
 
 	public GameBoard scriptReference;
+	public MonsterScript scriptReference1;
+	public MonsterScript scriptReference2;
+	public MonsterScript scriptReference3;
+	public MonsterScript scriptReference4;
+	public MonsterScript scriptReference5;
+	public MonsterScript scriptReference6;
+	public MonsterScript scriptReference7;
 
-	GameObject monster1;
-	GameObject monster2;
-	GameObject monster3;
-	GameObject monster4;
-	GameObject monster5;
-	GameObject monster6;
+	string monster1;
+	string monster2;
+	string monster3;
+	string monster4;
+	string monster5;
+	string monster6;
 
 	// TODO Get number of players
 	int numPlayers=6;
 	ArrayList CharList = new ArrayList();
-	GameObject activeChar;
+	string activeChar;
 	int activeInt=0;
-	bool endTurn=false;
+	public bool endTurn=false;
 	ArrayList diceRolled = new ArrayList();
 	bool diceRolledSet=false;
 	int vPointsEarned=0;
@@ -28,12 +35,13 @@ public class TurnScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		monster1 = GameObject.Find ("CyberBunny");
-		monster2 = GameObject.Find ("Kraken");
-		monster3 = GameObject.Find ("TheKing");
-		monster4 = GameObject.Find ("GigaZaur");
-		monster5 = GameObject.Find ("Alienoid");
-		monster6 = GameObject.Find ("MekaDragon");
+		monster1 = "CyberBunny";
+		monster2 = "Kraken";
+		monster3 = "TheKing";
+		monster4 = "GigaZaur";
+		monster5 = "Alienoid";
+		monster6 = "MekaDragon";
+		scriptReference7 = scriptReference1;
 
 		CharList.Add (monster1);
 		CharList.Add (monster2);
@@ -42,12 +50,12 @@ public class TurnScript : MonoBehaviour {
 		if(numPlayers>=5){CharList.Add (monster5);}
 		if(numPlayers>=6){CharList.Add (monster6);}
 
-		activeChar = (GameObject)CharList[activeInt];
+		activeChar = (string)CharList[activeInt];
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 		// Roll Dice
 			// In GameBoard.cs
 		// Use Dice
@@ -59,8 +67,19 @@ public class TurnScript : MonoBehaviour {
 			energyEarned = checkSym(4);
 			attackEarned = checkSym(5);
 			healthEarned = checkSym(6);
+		
+			scriptReference7.victoryPoints += vPointsEarned;
+			scriptReference7.energy += energyEarned;
+			scriptReference7.health += healthEarned;
+			if(scriptReference7.health>10)
+			{
+				//scriptReference7.health=10;
+			}
+
+			//diceRolledSet=false;
+			endTurn=true;
 		}
-		// Use these numbers to affect the monsters
+
 		// Have to make a variable to see who is in the city
 		// Check for death and victory
 
@@ -71,6 +90,8 @@ public class TurnScript : MonoBehaviour {
 			scriptReference.showDice=false;
 			diceRolledSet=false;
 			ChangeChar();
+			endTurn=false;
+			//scriptReference.endTurn=false;
 		}
 	}
 
@@ -80,8 +101,35 @@ public class TurnScript : MonoBehaviour {
 
 
 	// Hepler Functions ------------------------------------------------------------
-
 	
+
+	void setActiveScript() {
+		if(activeChar==monster1)
+		{
+			scriptReference7=scriptReference1;
+		}
+		else if(activeChar==monster2)
+		{
+			scriptReference7=scriptReference2;
+		}
+		else if(activeChar==monster3)
+		{
+			scriptReference7=scriptReference3;
+		}
+		else if(activeChar==monster4)
+		{
+			scriptReference7=scriptReference4;
+		}
+		else if(activeChar==monster5)
+		{
+			scriptReference7=scriptReference5;
+		}
+		else if(activeChar==monster6)
+		{
+			scriptReference7=scriptReference6;
+		}
+	}
+
 	int checkNum(int a) {
 		int numCount = 0;
 		int pointsEarned = 0;
@@ -142,14 +190,16 @@ public class TurnScript : MonoBehaviour {
 
 	void ChangeChar() {
 		activeInt++;
-		if(activeInt>=CharList.Capacity)
+		if(activeInt>=6)
 		{
 			activeInt=0;
-			activeChar=(GameObject)CharList[activeInt];
+			activeChar=(string)CharList[activeInt];
+			setActiveScript();
 		}
 		else
 		{
-			activeChar=(GameObject)CharList[activeInt];
+			activeChar=(string)CharList[activeInt];
+			setActiveScript();
 		}
 	}
 }

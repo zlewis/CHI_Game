@@ -29,6 +29,8 @@ public class GameBoard : MonoBehaviour {
 	ArrayList diceChosen = new ArrayList();
 	ArrayList diceEnd = new ArrayList();
 
+	public bool endTurn=false;
+
 	public GUISkin Button_Skin;
 
 	public bool toggle1=false;
@@ -87,11 +89,27 @@ public class GameBoard : MonoBehaviour {
     {
 		GUI.skin = Button_Skin;
 
+//		if(endTurn==false)
+//		{
+//			showDice=true;
+//		}
+
 		// Main Menu Button
         if (GUI.Button(new Rect(0, 0, 150, 50), "Main Menu"))
         {
             Application.LoadLevel(0);
         }
+
+		// End Turn Button
+//		if(GUI.Button(new Rect(0,200,100,100), "End Turn"))
+//		{
+//			endTurn=true;
+//		}
+
+//		if(endTurn)
+//		{
+//			scriptReference.endTurn=true;
+//		}
 
 		// Roll Button
 		if (GUI.Button(new Rect(0,Screen.height-50,50,50), "Roll"))
@@ -135,6 +153,7 @@ public class GameBoard : MonoBehaviour {
 		if(rollCount>=3)
 		{
 			endRolling=true;
+			rollCount=0;
 		}
 
 		diceRolls.Clear();
