@@ -31,8 +31,11 @@ public class TurnScript : MonoBehaviour {
 	int attackEarned=0;
 	int healthEarned=0;
 
+	Texture2D turnBox;
+
 	// Use this for initialization
 	void Start () {
+		turnBox = (Texture2D)Resources.Load("dice/ButtonHighlight2");
 
 		monster1 = "CyberBunny";
 		monster2 = "Kraken";
@@ -57,6 +60,7 @@ public class TurnScript : MonoBehaviour {
 
 		// Roll Dice
 			// In GameBoard.cs
+
 		// Use Dice
 		if(diceRolledSet)
 		{
@@ -75,9 +79,12 @@ public class TurnScript : MonoBehaviour {
 				scriptReference7.health=10;
 			}
 
+			// Do attacks
+
 			endTurn=true;
 		}
 
+		// Indicate whose turn it is
 		// Have to make a variable to see who is in the city
 		// Check for death and victory
 
@@ -93,12 +100,39 @@ public class TurnScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-
+		drawTurnSquare ();
 	}
 
 
 	// Hepler Functions ------------------------------------------------------------
 	
+
+	void drawTurnSquare() {
+		if(activeInt==0)
+		{
+			GUI.Box(new Rect(Screen.width-210,0,110,110),turnBox,"button1");
+		}
+		else if(activeInt==1)
+		{
+			GUI.Box(new Rect(Screen.width-210,95,110,110),turnBox,"button1");
+		}
+		else if(activeInt==2)
+		{
+			GUI.Box(new Rect(Screen.width-210,195,110,110),turnBox,"button1");
+		}
+		else if(activeInt==3)
+		{
+			GUI.Box(new Rect(Screen.width-210,295,110,110),turnBox,"button1");
+		}
+		else if(activeInt==4)
+		{
+			GUI.Box(new Rect(Screen.width-210,395,110,110),turnBox,"button1");
+		}
+		else if(activeInt==5)
+		{
+			GUI.Box(new Rect(Screen.width-210,495,110,110),turnBox,"button1");
+		}
+	}
 
 	void setActiveScript() {
 		if(activeChar==monster1)
