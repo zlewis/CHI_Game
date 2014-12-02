@@ -168,6 +168,7 @@ public class TurnScript : MonoBehaviour {
 			else
 			{
 				change=true;
+				endTurn=true;
 			}
 			//endTurn=true;
 		}
