@@ -33,6 +33,9 @@ public class TurnScript : MonoBehaviour {
 
 	Texture2D turnBox;
 
+	bool drawExitBool=false;
+	bool change=true;
+
 	// Use this for initialization
 	void Start () {
 		turnBox = (Texture2D)Resources.Load("dice/ButtonHighlight2");
@@ -80,12 +83,95 @@ public class TurnScript : MonoBehaviour {
 			}
 
 			// Do attacks
+			if(attackEarned>0)
+			{
+				// Current monster not in tokyo
+				if(scriptReference7.inCity==false)
+				{
+					if(scriptReference1.inCity==true)
+					{
+						scriptReference1.health-=attackEarned;
+						drawExitQuestion();
+					}
+					else if(scriptReference2.inCity==true)
+					{
+						scriptReference2.health-=attackEarned;
+						drawExitQuestion();
+					}
+					else if(scriptReference3.inCity==true)
+					{
+						scriptReference3.health-=attackEarned;
+						drawExitQuestion();
+					}
+					else if(scriptReference4.inCity==true)
+					{
+						scriptReference4.health-=attackEarned;
+						drawExitQuestion();
+					}
+					else if(scriptReference5.inCity==true)
+					{
+						scriptReference5.health-=attackEarned;
+						drawExitQuestion();
+					}
+					else if(scriptReference6.inCity==true)
+					{
+						scriptReference6.health-=attackEarned;
+						drawExitQuestion();
+					}
+					else
+					{
+						scriptReference7.inCity=true;
+						ChangeChar();
+					}
 
-			endTurn=true;
+					diceRolledSet=false;
+//					if(change)
+//					{
+//						ChangeChar();
+//					}
+					change=false;
+				}
+
+				// Current monster in tokyo
+				else if(scriptReference7.inCity==true)
+				{
+					if(scriptReference7.name!=scriptReference1.name)
+					{
+						scriptReference1.health-=attackEarned;
+					}
+					if(scriptReference7.name!=scriptReference2.name)
+					{
+						scriptReference2.health-=attackEarned;
+					}
+					if(scriptReference7.name!=scriptReference3.name)
+					{
+						scriptReference3.health-=attackEarned;
+					}
+					if(scriptReference7.name!=scriptReference4.name)
+					{
+						scriptReference4.health-=attackEarned;
+					}
+					if(scriptReference7.name!=scriptReference5.name)
+					{
+						scriptReference5.health-=attackEarned;
+					}
+					if(scriptReference7.name!=scriptReference6.name)
+					{
+						scriptReference6.health-=attackEarned;
+					}
+
+					change=true;
+					endTurn=true;
+				}
+			}
+
+			else
+			{
+				change=true;
+			}
+			//endTurn=true;
 		}
 
-		// Indicate whose turn it is
-		// Have to make a variable to see who is in the city
 		// Check for death and victory
 
 		// End Turn
@@ -94,18 +180,158 @@ public class TurnScript : MonoBehaviour {
 		{
 			scriptReference.resetToggle();
 			diceRolledSet=false;
-			ChangeChar();
+			if(change)
+			{
+				ChangeChar();
+			}
 			endTurn=false;
 		}
 	}
 
 	void OnGUI() {
 		drawTurnSquare ();
+
+		if(drawExitBool==true)
+		{
+			GUI.Box (new Rect (0, 400, 200, 100), "Leave Tokyo?");
+			if(GUI.Button(new Rect(25,450,50,50), "Yes"))
+			{
+				if(scriptReference1.inCity==true)
+				{
+					scriptReference1.inCity=false;
+				}
+				if(scriptReference2.inCity==true)
+				{
+					scriptReference2.inCity=false;
+				}
+				if(scriptReference3.inCity==true)
+				{
+					scriptReference3.inCity=false;
+				}
+				if(scriptReference4.inCity==true)
+				{
+					scriptReference4.inCity=false;
+				}
+				if(scriptReference5.inCity==true)
+				{
+					scriptReference5.inCity=false;
+				}
+				if(scriptReference6.inCity==true)
+				{
+					scriptReference6.inCity=false;
+				}
+
+				scriptReference7.inCity=true;
+
+				change=true;
+				endTurn=true;
+				drawExitBool=false;
+			}
+			if(GUI.Button(new Rect(100,450,50,50), "No"))
+			{
+				change=true;
+				endTurn=true;
+				drawExitBool=false;
+			}
+		}
+
+		moveMonster ();
 	}
 
 
 	// Hepler Functions ------------------------------------------------------------
-	
+
+
+	void moveMonster() {
+		if(scriptReference1.inCity==true)
+		{
+			Vector3 temp;
+			temp.x=-2f;
+			temp.y=0;
+			temp.z=-0.1f;
+			scriptReference1.transform.position=temp;
+		}
+		else
+		{
+			Vector3 temp;
+			temp=scriptReference1.basicPos;
+			scriptReference1.transform.position=temp;
+		}
+		if(scriptReference2.inCity==true)
+		{
+			Vector3 temp;
+			temp.x=-2f;
+			temp.y=0;
+			temp.z=-0.1f;
+			scriptReference2.transform.position=temp;
+		}
+		else
+		{
+			Vector3 temp;
+			temp=scriptReference2.basicPos;
+			scriptReference2.transform.position=temp;
+		}
+		if(scriptReference3.inCity==true)
+		{
+			Vector3 temp;
+			temp.x=-2f;
+			temp.y=0;
+			temp.z=-0.1f;
+			scriptReference3.transform.position=temp;
+		}
+		else
+		{
+			Vector3 temp;
+			temp=scriptReference3.basicPos;
+			scriptReference3.transform.position=temp;
+		}
+		if(scriptReference4.inCity==true)
+		{
+			Vector3 temp;
+			temp.x=-2f;
+			temp.y=0;
+			temp.z=-0.1f;
+			scriptReference4.transform.position=temp;
+		}
+		else
+		{
+			Vector3 temp;
+			temp=scriptReference4.basicPos;
+			scriptReference4.transform.position=temp;
+		}
+		if(scriptReference5.inCity==true)
+		{
+			Vector3 temp;
+			temp.x=-2f;
+			temp.y=0;
+			temp.z=-0.1f;
+			scriptReference5.transform.position=temp;
+		}
+		else
+		{
+			Vector3 temp;
+			temp=scriptReference5.basicPos;
+			scriptReference5.transform.position=temp;
+		}
+		if(scriptReference6.inCity==true)
+		{
+			Vector3 temp;
+			temp.x=-2f;
+			temp.y=0;
+			temp.z=-0.1f;
+			scriptReference6.transform.position=temp;
+		}
+		else
+		{
+			Vector3 temp;
+			temp=scriptReference6.basicPos;
+			scriptReference6.transform.position=temp;
+		}
+	}
+
+	void drawExitQuestion() {
+		drawExitBool = true;
+	}
 
 	void drawTurnSquare() {
 		if(activeInt==0)

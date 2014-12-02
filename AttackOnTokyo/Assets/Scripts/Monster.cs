@@ -6,7 +6,8 @@ public class Monster : MonsterScript {
 	private int xPosition = 100; 
 	private int yPosition = 50; 
 	public int number; 
-	public Texture picture; 
+	public Texture picture;
+
 	/*
 	void Start(){
 		number = number - 1; 
