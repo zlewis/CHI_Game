@@ -28,32 +28,32 @@ public class MonsterScript : MonoBehaviour {
 	}
 
 	//Methods for victoryPoints 
-	void addPoints(int num){
+	public void addPoints(int num){
 		victoryPoints += num; 
 		//wins if points >= 20 
 	}
 
-	void losePoints(int num){
+	public void losePoints(int num){
 		victoryPoints -= num; 
 	}
 
 	//Methods for energy 
-	void addEnergy(int num){
+	public void addEnergy(int num){
 		energy += num; 
 	}
 
-	void loseEnergy(int num){
+	public void loseEnergy(int num){
 		energy -= num; 
 	}
 
 	//Methods for health 
-	void addHealth(int num){
+	public void addHealth(int num){
 		if (health < 10){ 
 			health += num;
 		}
 	}
 
-	void loseHealth(int num){
+	public void loseHealth(int num){
 		health -= num; 
 		if (health <= 0) {
 			isAlive = false; 
@@ -61,7 +61,7 @@ public class MonsterScript : MonoBehaviour {
 	}
 
 	//Method for isAlive
-	bool monsterAlive(){
+	public bool monsterAlive(){
 		return isAlive; 
 	}
 }

@@ -31,6 +31,9 @@ public class GameSettings : MonoBehaviour
 
     private void OnGUI()
     {
+
+		GUI.backgroundColor = Color.black; 
+
         GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height / 5, 300, 20), "Number of players: ");
         comboBoxControl.Show();
 

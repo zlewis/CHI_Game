@@ -14,7 +14,9 @@ public class Rules1 : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		
+
+		GUI.backgroundColor = Color.black; 
+
 		GUIStyle myStyle = new GUIStyle ();
 		GUIStyle textStyle = new GUIStyle ();
 		myStyle.fontSize = 50;

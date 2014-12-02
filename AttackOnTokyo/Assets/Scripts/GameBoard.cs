@@ -89,6 +89,8 @@ public class GameBoard : MonoBehaviour {
     {
 		GUI.skin = Button_Skin;
 
+		//GUI.backgroundColor = Color.black; 
+
 		// Main Menu Button
         if (GUI.Button(new Rect(0, 0, 150, 50), "Main Menu"))
         {

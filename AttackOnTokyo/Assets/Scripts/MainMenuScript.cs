@@ -4,6 +4,7 @@ using System.Collections;
 public class MainMenuScript : MonoBehaviour {
 
 	//public GameSettings scriptReference;
+	 
 
 	// Use this for initialization
 	void Start () {
@@ -17,11 +18,11 @@ public class MainMenuScript : MonoBehaviour {
 	
 	void OnGUI() {
 
-        GUIStyle myStyle = new GUIStyle();
-        myStyle.fontSize = 50;
-        myStyle.normal.textColor = Color.white;
-
-        GUI.Label(new Rect(Screen.width / 2 - 150, 100, 300, 20), "King of Tokyo", myStyle);
+        //GUIStyle myStyle = new GUIStyle();
+        //myStyle.fontSize = 50;
+        //myStyle.normal.textColor = Color.white;
+		GUI.backgroundColor = Color.black; 
+        //GUI.Label(new Rect(Screen.width / 2 - 150, 100, 300, 20), "King of Tokyo", myStyle);
 
 		if (GUI.Button(new Rect(Screen.width/2-75,2*Screen.height/5, 150, 50), "Start Game"))
 		{
@@ -31,7 +32,7 @@ public class MainMenuScript : MonoBehaviour {
         {
             Application.LoadLevel(2);
         }
-        if (GUI.Button(new Rect(Screen.width/2-75, 3*Screen.height/5, 150, 50), "How to play?"))
+        if (GUI.Button(new Rect(Screen.width/2-75, 3*Screen.height/5, 150, 50), "How to Play"))
         {
 			Application.LoadLevel(3);
         }

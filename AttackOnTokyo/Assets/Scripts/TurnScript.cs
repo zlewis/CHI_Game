@@ -75,8 +75,11 @@ public class TurnScript : MonoBehaviour {
 			healthEarned = checkSym(6);
 		
 			scriptReference7.victoryPoints += vPointsEarned;
-			scriptReference7.energy += energyEarned;
-			scriptReference7.health += healthEarned;
+			scriptReference7.energy += energyEarned; 
+			scriptReference7.health += healthEarned; 
+			//scriptReference7.addPoints(vPointsEarned); 
+			//scriptReference7.addEnergy(energyEarned);
+			//scriptReference7.addHealth(healthEarned);
 			if(scriptReference7.health>10)
 			{
 				scriptReference7.health=10;
