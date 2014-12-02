@@ -6,6 +6,7 @@ public class MonsterScript : MonoBehaviour {
 	public int victoryPoints; 
 	public int energy; 
 	public int health; 
+	private int numberOfMonsters; 	//used to change layout of monsters stats 
 
 	private bool isAlive; 
 
@@ -15,6 +16,7 @@ public class MonsterScript : MonoBehaviour {
 		energy = 0; 
 		health = 10; 
 		isAlive = true; 
+		numberOfMonsters = 6; //six for now... unless we can change the number of players 
 	}
 	
 	// Update is called once per frame
